@@ -8,5 +8,15 @@
 		"name": "Hackney",
 		"lon": -0.066717,
 		"lat": 51.531766
+	},
+	{
+		"name": "Hudson River (NYC side)",
+		"lon": -74.00671,
+		"lat": 40.74028
+	},
+	{
+		"name": "Hudson River (NJ side)",
+		"lon": -74.02272,
+		"lat": 40.74500
 	}
 ]
