@@ -86,14 +86,14 @@ initWorkers( function (workers){
     });
   }
 
-  var numSearchesCompleted = 0;
+  // var numSearchesCompleted = 0;
   function searchCb( node ){
     console.log( JSON.stringify( node, undefined, 4 ) );
-    if( ++numSearchesCompleted === testPoints.length ){
-      // workers.forEach( function ( worker ){
-      //   worker.kill();
-      // });
-    }
+    // if( ++numSearchesCompleted === testPoints.length ){
+    //   workers.forEach( function ( worker ){
+    //     worker.kill();
+    //   });
+    // }
   }
 
   // Remap Quattro attribute names to more readable ones.
