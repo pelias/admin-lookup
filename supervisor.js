@@ -86,14 +86,14 @@ initWorkers( function (workers){
     });
   }
 
-  var numSearchesCompleted = 0;
+  // var numSearchesCompleted = 0;
   function searchCb( node ){
     console.log( JSON.stringify( node, undefined, 4 ) );
-    if( ++numSearchesCompleted === testPoints.length ){
-      workers.forEach( function ( worker ){
-        worker.kill();
-      });
-    }
+    // if( ++numSearchesCompleted === testPoints.length ){
+    //   workers.forEach( function ( worker ){
+    //     worker.kill();
+    //   });
+    // }
   }
 
   // Remap Quattro attribute names to more readable ones.
@@ -126,14 +126,26 @@ initWorkers( function (workers){
     });
   });
 
-  testPoints.forEach( function ( point ){
-    var node = {
-      name: point.name,
-      center_point: {
-        lat: point.lat,
-        lon: point.lon,
-      }
-    };
-    search( node );
+  function searchAll(){
+    console.log( 'performing search...' );
+    testPoints.forEach( function ( point ){
+      var node = {
+        name: point.name,
+        center_point: {
+          lat: point.lat,
+          lon: point.lon,
+        }
+      };
+      search( node );
+    });
+  }
+
+  searchAll();
+
+  process.on( 'SIGUSR1', function() {
+    console.log( 'reloading points...' );
+    testPoints = require( './points.json' );
+    searchAll();
   });
+
 });
